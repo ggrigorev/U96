@@ -94,8 +94,8 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
 ## How to reload FPGA from petalinux on-fly 
 #### - See https://www.youtube.com/watch?v=bsgXwXsNMPU 
 #### - 4Memories: 
-echo 0 > /sys/class/fpga_manager/fpga0/flags  
-pushd /lib/firmware  
-echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
-popd  
+    echo 0 > /sys/class/fpga_manager/fpga0/flags  
+    pushd /lib/firmware  
+    echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
+    popd  
 
