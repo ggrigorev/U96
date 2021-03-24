@@ -99,3 +99,5 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
     echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
     popd  
 
+
+
