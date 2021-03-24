@@ -46,12 +46,12 @@ petalinux-create --type project --name $PROJ -s $BSP_PATH/ultra96v2_oob_2020_1.b
 cd $PROJ  
 
 ### 4. Create petalinux project config  (passed)
-  - enable FPGA Manager!!!  
-  - see build/config.log for issue details  
+#### - enable FPGA Manager!!!  
+#### - see build/config.log for issue details  
 petalinux-config  
-####petalinux config for FPGA Manager:
-  CONFIG_SUBSYSTEM_DTB_OVERLAY=y  
-  CONFIG_SUBSYSTEM_FPGA_MANAGER=y  
+#### petalinux config for FPGA Manager:
+  - CONFIG_SUBSYSTEM_DTB_OVERLAY=y  
+  - CONFIG_SUBSYSTEM_FPGA_MANAGER=y  
 
 ### 5. Build petalinux project (not passed yet)
 ####  - see build/build.log for issue details
@@ -72,28 +72,28 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
 
 ## Petalinux issues resolution (I faced when I try petalinux on Fedora 33) 
  
-###You may need to install some packets for this. E.g.: 
+### You may need to install some packets for this. E.g.: 
   sudo dnf install ncurses-devel.x86_64  
   sudo dnf install ncurses-compat-libs  
   sudo dnf install zlib*686 #sic! 32 bit vertion is required  
  
-###petalinux-build ERROR: Failed to Extract Yocto SDK 
+### petalinux-build ERROR: Failed to Extract Yocto SDK 
   see $PROJ/build/config.log for details - some utilities can be missed and should be instaled  
  
-###ERROR:  OE-core's config sanity checker detected a potential misconfiguration. 
+### ERROR:  OE-core's config sanity checker detected a potential misconfiguration. 
     Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).  
     Following is the list of potential problems / advisories:  
     Failed to create a file in SSTATE_DIR: Permission denied.  
-####You could try using /home/training/git/avnet/petalinux/projects/cache/sstate_2020.1/aarch64/ in SSTATE_MIRRORS rather than as an SSTATE_CACHE. 
+#### You could try using /home/training/git/avnet/petalinux/projects/cache/sstate_2020.1/aarch64/ in SSTATE_MIRRORS rather than as an SSTATE_CACHE. 
     sudo mkdir -p /home/training/git/avnet/petalinux/projects/cache/sstate_2020.1/aarch64/  
     sudo chown -R vgoussev.vgoussev /home/training  
-####IMPORTANT: You may try to fix the pathes DL_DIR and SSTATE_DIR in $PROJ/project-spec/meta-user/conf/petalinuxbsp.conf  
+#### IMPORTANT: You may try to fix the pathes DL_DIR and SSTATE_DIR in $PROJ/project-spec/meta-user/conf/petalinuxbsp.conf  
     - this works!  
  
 
 ## How to reload FPGA from petalinux on-fly 
-#### See https://www.youtube.com/watch?v=bsgXwXsNMPU 
-#### 4Memories: 
+#### - See https://www.youtube.com/watch?v=bsgXwXsNMPU 
+#### - 4Memories: 
 echo 0 > /sys/class/fpga_manager/fpga0/flags  
 pushd /lib/firmware  
 echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
