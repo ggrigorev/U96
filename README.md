@@ -100,4 +100,3 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
     popd  
 
 
-
