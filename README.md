@@ -46,8 +46,8 @@ petalinux-create --type project --name $PROJ -s $BSP_PATH/ultra96v2_oob_2020_1.b
 cd $PROJ
 
 ### 4. Create petalinux project config  (passed)
-  - enable FPGA Manager!!!
-  - see build/config.log for issue details
+####  - enable FPGA Manager!!!
+####  - see build/config.log for issue details
 petalinux-config 
 ####petalinux config for FPGA Manager:
   CONFIG_SUBSYSTEM_DTB_OVERLAY=y
@@ -61,7 +61,7 @@ petalinux-build  #does a lot of downloads from http://petalinux.xilinx.com/sswre
 petalinux-package --boot --u-boot --format BIN
 
 ### 7. Copy boot files to SD-card (not tried yet)
-cp pre-built/linux/images/BOOT.BIN  /media/sd/mmcblk0p1 
+cp pre-built/linux/images/BOOT.BIN  /media/sd/mmcblk0p1
 cp pre-built/linux/images/image.ub  /media/sd/mmcblk0p1
 cp pre-built/linux/images/boot.scr  /media/sd/mmcblk0p1
 
