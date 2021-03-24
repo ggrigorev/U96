@@ -72,15 +72,15 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
 
 ## Petalinux issues resolution (I faced when I try petalinux on Fedora 33) 
  
-### You may need to install some packets for this. E.g.: 
+### 1.You may need to install some packets for this. E.g.: 
   sudo dnf install ncurses-devel.x86_64  
   sudo dnf install ncurses-compat-libs  
   sudo dnf install zlib*686 #sic! 32 bit vertion is required  
  
-### petalinux-build ERROR: Failed to Extract Yocto SDK 
+### 2. petalinux-build ERROR: Failed to Extract Yocto SDK 
   see $PROJ/build/config.log for details - some utilities can be missed and should be instaled  
  
-### ERROR:  OE-core's config sanity checker detected a potential misconfiguration. 
+### 3. ERROR:  OE-core's config sanity checker detected a potential misconfiguration. 
     Either fix the cause of this error or at your own risk disable the checker (see sanity.conf).  
     Following is the list of potential problems / advisories:  
     Failed to create a file in SSTATE_DIR: Permission denied.  
