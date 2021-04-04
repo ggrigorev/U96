@@ -7,7 +7,14 @@ This repo is about Xilinx Vivado, Vitis, and Lab tools applicable to Avnet evalu
 https://www.youtube.com/watch?v=NzWcRGjhfF8  
 https://www.hackster.io/news/hello-world-on-the-ultra96-using-vitis-89a06b18fa3a  
 https://github.com/wknitter/ultra96v2_0
+https://www.96boards.org/documentation/consumer/ultra96/ultra96-v2/getting-started/
+https://www.hackster.io/mohammad-hosseinabady2/ultra96v2-linux-based-platform-in-xilinx-vitis-2020-1-06f226
+https://github.com/josh-macfie/Ultra96_Blink
+https://github.com/bombadil7/ultra96_blinky
+https://github.com/paulwood15/Ultra96v2-Blinky
+https://github.com/Avnet/Ultra96-PYNQ?CMP=GL-Avnet-E14-cross-sell
 
+https://www.we-online.com/icref/en/xilinx/XCZU3-SBVA484B-ZU3EG-FPGA  #looks pretty simular to U96v2
 
 ## Problems: 
 
@@ -92,7 +99,8 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
  
 
 ## How to reload FPGA from petalinux on-fly 
-#### - See https://www.youtube.com/watch?v=bsgXwXsNMPU 
+#### - https://www.youtube.com/watch?v=bsgXwXsNMPU 
+#### - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming
 #### - 4Memories: 
     echo 0 > /sys/class/fpga_manager/fpga0/flags  
     pushd /lib/firmware  
