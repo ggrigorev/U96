@@ -24,20 +24,34 @@ https://forum.rocketboards.org/t/how-to-program-fpga-from-hps-de10-nano/1278/4
 https://rocketboards.org/foswiki/Documentation/GSRD131ProgrammingFPGA  
 
 
+## How to reload FPGA from petalinux on-fly 
+#### - https://www.youtube.com/watch?v=bsgXwXsNMPU  #good video!
+#### - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming
+#### - 4Memories: 
+    echo 0 > /sys/class/fpga_manager/fpga0/flags  
+    pushd /lib/firmware  
+    echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
+    popd  
+
+
 
 ## ULTRA96v2 board Resources:
 ### Board Info and Design files @avnet. There is no SW reference here :(
 https://www.avnet.com/wps/portal/us/products/avnet-boards/avnet-board-families/ultra96-v2/
 ### Board Info and Design files @element14. There is SW (BSP) reference here in "Reference Design" :)
 https://www.element14.com/community/docs/DOC-95649 
-### BSP for ULTRA96v2 (use ultra96v2_oob_2020_1.bsp)
+### ULTRA96v2 BSP for petalinux (use ultra96v2_oob_2020_1.bsp)
+#### - this is actually tar.gz and can be unpacked as is for any reason
+#### - direct link may not work: go through element14 "Reference design"
 https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease&p=true&originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc_cnRpbWU9T0o0Tl9zUHIyRWc
+
 
 ## Petalinux resources
 ### Installer (use petalinux-v2020.1-final-installer.run)
 https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
 ### Petalinux docs
 https://www.xilinx.com/support/documentation/sw_manuals/xilinx2020_2/ug1144-petalinux-tools-reference-guide.pdf
+
 
 ## Petalinux projectflow
 ### 1. Install base installer (passed)
@@ -98,12 +112,4 @@ petalinux-package --prebuilt --fpga <FPGA bitstream>
     - this works!  
  
 
-## How to reload FPGA from petalinux on-fly 
-#### - https://www.youtube.com/watch?v=bsgXwXsNMPU 
-#### - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming
-#### - 4Memories: 
-    echo 0 > /sys/class/fpga_manager/fpga0/flags  
-    pushd /lib/firmware  
-    echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
-    popd  
 
