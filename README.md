@@ -43,7 +43,10 @@ https://www.element14.com/community/docs/DOC-95649
 ### ULTRA96v2 BSP for petalinux (use ultra96v2_oob_2020_1.bsp)
 #### - this is actually tar.gz and can be unpacked as is for any reason
 #### - direct link may not work: go through element14 "Reference design"
-https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease&p=true&originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc_cnRpbWU9T0o0Tl9zUHIyRWc
+https://avtinc.sharepoint.com/teams/ET-Downloads/Shared%20Documents/Forms/AllItems.aspx?id=%2Fteams%2FET%2DDownloads%2FShared%20Documents%2Fprojects%2Fpublic%5Frelease&p=true&originalPath=aHR0cHM6Ly9hdnRpbmMuc2hhcmVwb2ludC5jb20vOmY6L3QvRVQtRG93bmxvYWRzL0VpYUJ6ZkRrRHI5Sm8yT1FONTJ6b1FzQkQxUkdEcUJIdDVtYTEwSjFzVWloVXc_cnRpbWU9T0o0Tl9zUHIyRWc  
+ 
+Pulse Width Modulator PWM_w_Int IP https://github.com/Avnet/hdl
+
 
 
 ## Petalinux resources
