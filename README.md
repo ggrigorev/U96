@@ -27,11 +27,9 @@ https://rocketboards.org/foswiki/Documentation/GSRD131ProgrammingFPGA
 ## How to reload FPGA from petalinux on-fly 
 #### - https://www.youtube.com/watch?v=bsgXwXsNMPU  #good video!
 #### - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841847/Solution+ZynqMP+PL+Programming
-#### - 4Memories: 
+#### - 4Memories (ATTENTION: .bin file is to be located in /lib/firmware): 
     echo 0 > /sys/class/fpga_manager/fpga0/flags  
-    pushd /lib/firmware  
-    echo <fpga stream file converted to BIN firmat>.BIN > /sys/class/fpga_manager/fpga0/firmware  
-    popd  
+    echo <fpgastream>.bin > /sys/class/fpga_manager/fpga0/firmware  
 
 
 
