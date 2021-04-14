@@ -7,40 +7,68 @@ typedef struct packed {
 
 typedef struct packed {
 	logic [27:0] reserved;
-	logic		 modemStatus
-	logic		 lineStatus
-	logic		 txDataEmpty 
-	logic		 rxDataAvailable
+	logic		 modemStatus;
+	logic		 lineStatus;
+	logic		 txDataEmpty ;
+	logic		 rxDataAvailable;
 } uart_interruptEnable_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....; 
+	logic [7:6]	 fifoEn;
+    logic [5:4]	 reserved;
+    logic [3:1]  interuptID2;
+    logic		 interuptPending;	
 } uart_interruptIdentification_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....; 
+	logic    	 divisorLatchAccessBit;
+	logic    	 setBreak;
+	logic        stickParity;
+	logic		 evenParitySelect;
+	logic		 parityEnable;
+	logic		 numberOfStopBits;
+	logic [1:0]  wordLengthSelect;
 } uart_lineControl_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....; 
+	logic [7:5]  always000;
+	logic		 loopBack;
+	logic		 userOut2;
+	logic		 userOut1;
+	logic		 requestToSend; 
+	logic		 dataTerminalReady; 
 } uart_modemControl_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....; 
+	logic		 errorInRcvrFifo;
+	logic		 transmitterEmpty;
+	logic		 transmitterHoldingRegisterEmpty;
+	logic		 breakInterupt;
+	logic		 framingError;
+	logic		 parityError;
+	logic		 overRunError;
+	logic		 dataReady;
 } uart_lineStatus_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....;
+	logic		 dataCarrierDetect;
+	logic		 ringIndicator;
+	logic		 dataSetReady;
+	logic		 clearToSend;
+	logic		 deltaDataCarrierDetect;
+	logic		 trailingEdgeRingIndicator;
+	logic		 deltaDataSetReady;
+	logic		 dataClearToSend;
 } uart_modemStatus_t; // 4 bytes
 
 typedef struct packed {
 	logic [23:0] reserved;
-	logic [ 7:0] ....; 
+	logic [ 7:0] scratch; 
 } uart_scratch_t; // 4 bytes
 
 typedef struct packed {
