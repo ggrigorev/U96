@@ -1,0 +1,149 @@
+
+Instructions on how to create Linux for ZynqMP SoC using PetaLinux 2021.1
+
+In this instructions I'm using virtual machine (VMware) for building ZynqMP SoC Linux.
+
+After installing virtual machine (VMware) select compatible version of Linux for your PetaLinux 
+
+                                           **IMPORTANT**
+
+*** For compatibility of Linux and PetaLinux refer to PetaLinux Tools Documentation Reference Guide **
+
+Supported OS for  PetaLinux 2021.1:
+- Red Hat Enterprise Workstation/Server 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.1, 8.2 (64-bit)
+- CentOS Workstation/Server 7.4, 7.5, 7.6, 7.7, 7.8, 7.9, 8.1, 8.2 (64-bit)
+- Ubuntu Linux Workstation/Server 16.04.5, 16.04.6, 18.04.1, 18.04.2, 18.04.3, 18.04.4,
+18.04.5, 20.04, 20.04.1 (64-bit)
+ 
+
+i've decided to install latest PetaLinux 2021.1 and compatible version is Ubuntu 20.04.1
+
+
+1. Intalling PetaLinux
+
+1.1 Download  PetaLinux Installer for Linux
+
+1.2 Enter perconal Xilinx account information. If you dont have acount register.
+
+1.3 run : sudo dpkg-reconfigure dash *(press NO)
+
+1.3 Install all necesary packages:
+
+sudo apt-get install iproute2 gawk python3 python build-essential 
+gcc git make net-tools libncurses5-dev tftpd zlib1g-dev libssl-dev flex 
+bison libselinux1 gnupg wget git-core diffstat chrpath socat xterm autoconf 
+libtool tar unzip texinfo zlib1g-dev gcc-multilib automake zlib1g:i386 screen 
+pax gzip cpio python3-pip python3-pexpect xz-utils debianutils iputils-ping python3-git 
+python3-jinja2 libegl1-mesa libsdl1.2-dev pylint3 -y 
+
+1.4 Install libtinfo5 library: sudo apt-get install libtinfo5
+
+1.5 Add execution mode to downloaded file: sudo chmod +x <file name>
+
+1.6 Change location into directory where PetaLinux will be installed (/home/anton/Xilinx )
+
+1.7 run file: /home/anton/Downloads/<file name>.run
+
+1.8 Agree to Xilinx terms
+
+1.9 ***Source enviroment: source ~/Xilinx/settings.sh
+
+    ***Source enviroment has to be setup everytime you turn off the machine!*****
+
+1.10 Deactivate Webtalk: petalinux-util --webtalk off
+
+
+2. Creating Linux project
+
+ *** Type ( petalinux-create ) to see all of the create comand function ***
+
+    2.1 Create project for zynqMP: petalinux-create -t project -n <PROJECT> --template zynqMP
+
+    2.2 Export Hardware Definition File (*.xsa) from the Vivado Project into the PetaLinux project root folder
+
+    2.3 Change to PetaLinux root folder: cd <PetaLinux project folder >
+
+    2.4 Run:$ petalinux-config --get-hw-description
+
+    2.5 Exit without changing anything
+
+    2.5 Run:$ petalinux-config -c rootfs
+
+       2.5.1 Select Filesystem Packeges > admin > sudo 
+	
+	   2.5.2 Enable all sudo field by clicking <Y>
+	
+	   2.5.3 Select PetaLinux Packege Groups > Packegegroup-patalinux-python-modules 
+	
+	   2.5.4 Enable all sudo field by clicking <Y>
+	
+    2.6 Run:$ petalinux-build	
+
+    2.7 Run:$ petalinux-package --boot --force --fpga --u-boot
+
+3. Creat SD Card for SD BOOT
+  
+   3.1 Plugin SD Card 
+   
+   3.2 Verify the address of the SD Card : ls /dev/sd*
+       or look under Disks
+   
+   3.4 Start mounting partitions : sudo fdisk /dev/sda
+   
+   3.5 Press p to view current partitions
+   
+   3.6 Press d to deleate partitions
+   
+   3.7 Enter number of partition you are looking to deleate 
+       Repeat the process, if there is more than one partition
+	   
+   3.8 Enter n to create first partition
+   
+   3.9 For partition number press enter 
+   
+   3.10 For First sector press enter 
+   
+   3.11 For Last sector enter +1G  
+   
+   *if you get massege "You want to deleate flags?" enter Y
+   
+   3.12 Enter a to make partition #1 bootable
+   
+   3.13 Enter n to create second partition
+   
+   3.13 Enter n to create second partition
+   
+   3.9 For partition number press enter 
+   
+   3.10 For First sector press enter 
+   
+   3.11 For Last sector press enter 
+   
+   *if you get massege "You want to deleate flags?" enter Y
+   
+   3.12 Press p to view current partitions
+        Verify if all of the partitions are created correctly 
+	   
+   3.13 Enter w to comit your changes 
+   
+   3.14 Enter sudo mkfs.vfat -F 32 -n boot /dev/sda1 to mount file system on first partition
+   
+   3.15 Enter sudo mkfs.ext4 -L root /dev/sda2 to mount file system on second partition
+   
+4. Change directory linux project directory cd /home/anton/zynq_linux
+
+5. Copy files into boot partition
+        
+   cp ./images/linux/u-boot.elf /media/anton/boot/
+   cp ./images/linux/image.ub /media/anton/boot/
+   cp ./images/linux/bl31.elf /media/anton/boot/
+   cp ./images/linux/BOOT.BIN  /media/anton/boot/
+   cp ./images/linux/boot.scr  /media/anton/boot/
+
+6. Extract rootsf into root partition 
+
+   sudo tar xvf ./images/linux/rootfs.tar.gz -C /media/anton/root/
+   
+7. Enter sudo sync
+
+SD card has been compleat 
